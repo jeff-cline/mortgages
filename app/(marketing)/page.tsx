@@ -14,32 +14,32 @@ export function generateMetadata(): Metadata {
 
 const KEY_CALCULATORS: { slug: string; title: string; blurb: string }[] = [
   {
-    slug: "payment",
+    slug: "mortgage-payment-calculator",
     title: "Mortgage Payment",
     blurb: "See your full monthly PITI — principal, interest, taxes, insurance, PMI.",
   },
   {
-    slug: "affordability",
+    slug: "mortgage-affordability-calculator",
     title: "Affordability",
     blurb: "Find the home price and payment that fit your income and debts.",
   },
   {
-    slug: "refinance",
+    slug: "mortgage-refinance-calculator",
     title: "Refinance",
     blurb: "Compare your current loan and find your break-even point.",
   },
   {
-    slug: "amortization",
+    slug: "mortgage-amortization-calculator",
     title: "Amortization",
     blurb: "Watch principal and interest split out over the life of your loan.",
   },
   {
-    slug: "rent-vs-buy",
+    slug: "rent-vs-buy-calculator",
     title: "Rent vs. Buy",
     blurb: "Weigh renting against owning to see which builds more wealth.",
   },
   {
-    slug: "dti",
+    slug: "debt-to-income-calculator",
     title: "Debt-to-Income",
     blurb: "Check the ratio lenders use to decide how much you qualify for.",
   },
@@ -140,7 +140,7 @@ export default function HomePage() {
               <ButtonLink href="/quote" variant="accent" size="lg">
                 Get my quote
               </ButtonLink>
-              <ButtonLink href="/calculators" variant="outline" size="lg">
+              <ButtonLink href="/mortgage-calculators" variant="outline" size="lg">
                 Explore calculators
               </ButtonLink>
             </div>
@@ -182,7 +182,7 @@ export default function HomePage() {
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {KEY_CALCULATORS.map((c) => (
-              <Link key={c.slug} href={`/calculators/${c.slug}`} className="group block">
+              <Link key={c.slug} href={`/mortgage-calculators/${c.slug}`} className="group block">
                 <Card className="h-full transition-shadow group-hover:shadow-[0_4px_12px_rgba(15,23,42,0.10),0_16px_40px_rgba(15,23,42,0.10)]">
                   <CardBody className="flex h-full flex-col">
                     <h3 className="text-lg font-semibold text-brand group-hover:text-brand-700">
@@ -206,7 +206,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-10">
-            <ButtonLink href="/calculators" variant="outline" size="md">
+            <ButtonLink href="/mortgage-calculators" variant="outline" size="md">
               See all calculators
             </ButtonLink>
           </div>

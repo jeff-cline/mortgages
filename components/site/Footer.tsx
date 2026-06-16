@@ -17,10 +17,10 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold text-white">Calculators</h4>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link href="/calculators/payment" className="hover:text-white">Mortgage payment</Link></li>
-            <li><Link href="/calculators/affordability" className="hover:text-white">Affordability</Link></li>
-            <li><Link href="/calculators/refinance" className="hover:text-white">Refinance</Link></li>
-            <li><Link href="/calculators" className="hover:text-white">All calculators</Link></li>
+            <li><Link href="/mortgage-calculators/mortgage-payment-calculator" className="hover:text-white">Mortgage payment</Link></li>
+            <li><Link href="/mortgage-calculators/mortgage-affordability-calculator" className="hover:text-white">Affordability</Link></li>
+            <li><Link href="/mortgage-calculators/mortgage-refinance-calculator" className="hover:text-white">Refinance</Link></li>
+            <li><Link href="/mortgage-calculators" className="hover:text-white">All calculators</Link></li>
           </ul>
         </div>
         <div>

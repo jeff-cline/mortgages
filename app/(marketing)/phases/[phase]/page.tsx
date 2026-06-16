@@ -144,7 +144,7 @@ export default async function PhasePage({
               </p>
               <div className="mt-5 flex flex-col gap-3">
                 <ButtonLink
-                  href={`/calculators/${p.recommendedCalculator}`}
+                  href={`/mortgage-calculators/${p.recommendedCalculator}`}
                   variant="primary"
                   size="md"
                 >
