@@ -349,3 +349,55 @@ export function commercialMortgage(a: {
     totalPaidToTerm: round(totalPaidToTerm, 2),
   };
 }
+
+// ─── Task F: FHA mortgage payment (with MIP) ──────────────────────────────────
+
+/**
+ * FHA mortgage payment marketing ESTIMATOR.
+ *
+ * Approximation only. Uses a flat 1.75% upfront MIP (financed) and a flat 0.55%
+ * annual MIP. Real FHA MIP rates vary by loan term, LTV, and base loan amount,
+ * and MIP duration depends on the down payment. Do not rely on this for an exact
+ * payment quote.
+ */
+export function fhaMortgage(a: {
+  homePrice: number;
+  downPaymentPct?: number; // default & floor 3.5
+  ratePct: number;
+  years: number;
+  annualTaxPct?: number; // default 1.1 (% of home price)
+  annualInsurance?: number; // default 1200 ($/yr)
+}): {
+  baseLoan: number;
+  upfrontMip: number;
+  financedLoan: number;
+  monthlyPI: number;
+  monthlyMip: number;
+  monthlyTax: number;
+  monthlyInsurance: number;
+  totalMonthly: number;
+} {
+  const dp = Math.max(3.5, a.downPaymentPct ?? 3.5);
+  const baseLoan = round(a.homePrice * (1 - dp / 100), 2);
+  const upfrontMip = round(baseLoan * 0.0175, 2); // 1.75% UFMIP, financed
+  const financedLoan = baseLoan + upfrontMip;
+  const monthlyPandI = monthlyPI(financedLoan, a.ratePct, a.years);
+  const monthlyMip = round((financedLoan * 0.0055) / 12, 2); // 0.55% annual MIP (approx)
+  const monthlyTax = ((a.annualTaxPct ?? 1.1) / 100) * a.homePrice / 12;
+  const monthlyInsurance = (a.annualInsurance ?? 1200) / 12;
+  const totalMonthly = round(
+    monthlyPandI + monthlyMip + monthlyTax + monthlyInsurance,
+    2
+  );
+
+  return {
+    baseLoan,
+    upfrontMip,
+    financedLoan: round(financedLoan, 2),
+    monthlyPI: round(monthlyPandI, 2),
+    monthlyMip,
+    monthlyTax: round(monthlyTax, 2),
+    monthlyInsurance: round(monthlyInsurance, 2),
+    totalMonthly,
+  };
+}

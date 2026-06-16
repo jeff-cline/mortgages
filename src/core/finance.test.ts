@@ -11,6 +11,7 @@ import {
   rentVsBuy,
   reverseMortgage,
   commercialMortgage,
+  fhaMortgage,
 } from "./finance";
 
 // ─── TASK A: Monthly payment & amortization ───────────────────────────────────
@@ -401,5 +402,39 @@ describe("commercialMortgage", () => {
       termYears: 7,
     });
     expect(result.totalInterestToTerm).toBeGreaterThan(0);
+  });
+});
+
+// ─── TASK F: FHA mortgage payment (with MIP) ─────────────────────────────────
+
+describe("fhaMortgage", () => {
+  it("base loan reflects 3.5% down on a $300k home", () => {
+    const result = fhaMortgage({ homePrice: 300000, ratePct: 6, years: 30 });
+    expect(result.baseLoan).toBe(289500);
+  });
+
+  it("upfront MIP is 1.75% of base loan", () => {
+    const result = fhaMortgage({ homePrice: 300000, ratePct: 6, years: 30 });
+    expect(result.upfrontMip).toBe(Math.round(289500 * 0.0175 * 100) / 100);
+  });
+
+  it("monthly MIP is positive", () => {
+    const result = fhaMortgage({ homePrice: 300000, ratePct: 6, years: 30 });
+    expect(result.monthlyMip).toBeGreaterThan(0);
+  });
+
+  it("total monthly exceeds bare P&I", () => {
+    const result = fhaMortgage({ homePrice: 300000, ratePct: 6, years: 30 });
+    expect(result.totalMonthly).toBeGreaterThan(result.monthlyPI);
+  });
+
+  it("down payment below 3.5% is floored at 3.5%", () => {
+    const result = fhaMortgage({
+      homePrice: 300000,
+      ratePct: 6,
+      years: 30,
+      downPaymentPct: 1,
+    });
+    expect(result.baseLoan).toBe(289500);
   });
 });
