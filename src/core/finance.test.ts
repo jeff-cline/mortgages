@@ -10,6 +10,7 @@ import {
   extraPayment,
   rentVsBuy,
   reverseMortgage,
+  commercialMortgage,
 } from "./finance";
 
 // ─── TASK A: Monthly payment & amortization ───────────────────────────────────
@@ -355,5 +356,50 @@ describe("reverseMortgage", () => {
     const result = reverseMortgage({ age: 70, homeValue: 500000, expectedRatePct: 6 });
     expect(result.availableProceeds).toBeGreaterThan(0);
     expect(result.availableProceeds).toBeLessThan(500000);
+  });
+});
+
+// ─── TASK E: Commercial mortgage (amortize with balloon) ─────────────────────
+
+describe("commercialMortgage", () => {
+  it("monthly payment is positive", () => {
+    const result = commercialMortgage({
+      loanAmount: 1000000,
+      ratePct: 7,
+      amortYears: 25,
+      termYears: 7,
+    });
+    expect(result.monthlyPayment).toBeGreaterThan(0);
+  });
+
+  it("balloon due before full amortization is positive and below loan amount", () => {
+    const result = commercialMortgage({
+      loanAmount: 1000000,
+      ratePct: 7,
+      amortYears: 25,
+      termYears: 7,
+    });
+    expect(result.balloonBalance).toBeGreaterThan(0);
+    expect(result.balloonBalance).toBeLessThan(1000000);
+  });
+
+  it("balloon is ~0 when term equals or exceeds amortization", () => {
+    const result = commercialMortgage({
+      loanAmount: 1000000,
+      ratePct: 7,
+      amortYears: 25,
+      termYears: 25,
+    });
+    expect(result.balloonBalance).toBeCloseTo(0, 2);
+  });
+
+  it("total interest to term is positive", () => {
+    const result = commercialMortgage({
+      loanAmount: 1000000,
+      ratePct: 7,
+      amortYears: 25,
+      termYears: 7,
+    });
+    expect(result.totalInterestToTerm).toBeGreaterThan(0);
   });
 });

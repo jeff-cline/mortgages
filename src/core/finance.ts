@@ -308,3 +308,44 @@ export function reverseMortgage(a: {
   const availableProceeds = round(maxClaimAmount * principalLimitFactor, 2);
   return { principalLimitFactor, maxClaimAmount, availableProceeds };
 }
+
+// ─── Task E: Commercial mortgage (amortize with balloon) ──────────────────────
+
+/**
+ * Commercial mortgage marketing ESTIMATOR.
+ *
+ * Payments are based on a long amortization schedule (e.g. 25 years) but the
+ * remaining balance comes due as a balloon at the (shorter) term. Numbers are
+ * approximations for illustration only.
+ */
+export function commercialMortgage(a: {
+  loanAmount: number;
+  ratePct: number;
+  amortYears: number; // amortization schedule length (e.g. 25)
+  termYears: number; // balloon due at this term (e.g. 7); may be < amortYears
+}): {
+  monthlyPayment: number;
+  balloonBalance: number;
+  totalInterestToTerm: number;
+  totalPaidToTerm: number;
+} {
+  const monthlyPayment = monthlyPI(a.loanAmount, a.ratePct, a.amortYears);
+  const schedule = amortization(a.loanAmount, a.ratePct, a.amortYears);
+  const k = Math.min(a.termYears, a.amortYears) * 12;
+
+  const balloonBalance =
+    k >= schedule.length ? 0 : schedule[k - 1].balance;
+
+  let totalInterestToTerm = 0;
+  for (let i = 0; i < k && i < schedule.length; i++) {
+    totalInterestToTerm += schedule[i].interest;
+  }
+  const totalPaidToTerm = monthlyPayment * k;
+
+  return {
+    monthlyPayment: round(monthlyPayment, 2),
+    balloonBalance: round(balloonBalance, 2),
+    totalInterestToTerm: round(totalInterestToTerm, 2),
+    totalPaidToTerm: round(totalPaidToTerm, 2),
+  };
+}
