@@ -9,6 +9,7 @@ import {
   dti,
   extraPayment,
   rentVsBuy,
+  reverseMortgage,
 } from "./finance";
 
 // ─── TASK A: Monthly payment & amortization ───────────────────────────────────
@@ -323,5 +324,36 @@ describe("rentVsBuy", () => {
     const lowInflation = rentVsBuy({ ...base, rentInflationPct: 1 });
     const highInflation = rentVsBuy({ ...base, rentInflationPct: 5 });
     expect(highInflation.advantage).toBeGreaterThan(lowInflation.advantage);
+  });
+});
+
+// ─── TASK D: Reverse mortgage (HECM-style estimate) ──────────────────────────
+
+describe("reverseMortgage", () => {
+  it("older age yields higher available proceeds (62 vs 80)", () => {
+    const young = reverseMortgage({ age: 62, homeValue: 500000, expectedRatePct: 6 });
+    const old = reverseMortgage({ age: 80, homeValue: 500000, expectedRatePct: 6 });
+    expect(old.availableProceeds).toBeGreaterThan(young.availableProceeds);
+  });
+
+  it("higher expected rate yields lower or equal PLF", () => {
+    const lowRate = reverseMortgage({ age: 70, homeValue: 500000, expectedRatePct: 5 });
+    const highRate = reverseMortgage({ age: 70, homeValue: 500000, expectedRatePct: 8 });
+    expect(highRate.principalLimitFactor).toBeLessThanOrEqual(lowRate.principalLimitFactor);
+  });
+
+  it("caps max claim amount at the lending limit when home value exceeds it", () => {
+    const result = reverseMortgage({
+      age: 70,
+      homeValue: 2000000,
+      expectedRatePct: 6,
+    });
+    expect(result.maxClaimAmount).toBe(1149825);
+  });
+
+  it("normal case: proceeds positive and less than home value", () => {
+    const result = reverseMortgage({ age: 70, homeValue: 500000, expectedRatePct: 6 });
+    expect(result.availableProceeds).toBeGreaterThan(0);
+    expect(result.availableProceeds).toBeLessThan(500000);
   });
 });
