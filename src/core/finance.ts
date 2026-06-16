@@ -71,3 +71,88 @@ export function totalInterest(
   const rows = amortization(principal, annualRatePct, years);
   return rows.reduce((acc, r) => acc + r.interest, 0);
 }
+
+// ─── Task B: Full housing payment, affordability, refi break-even, DTI ────────
+
+export function monthlyPITI(a: {
+  principal: number;
+  ratePct: number;
+  years: number;
+  annualTaxPct: number;
+  annualInsurance: number;
+  monthlyHOA: number;
+  pmiAnnualPct: number;
+  homeValue: number;
+}): number {
+  const pi = monthlyPI(a.principal, a.ratePct, a.years);
+  const tax = (a.annualTaxPct / 100) * a.homeValue / 12;
+  const insurance = a.annualInsurance / 12;
+  const hoa = a.monthlyHOA;
+  const ltv = a.principal / a.homeValue;
+  const pmi = ltv > 0.8 ? (a.pmiAnnualPct / 100) * a.homeValue / 12 : 0;
+  return pi + tax + insurance + hoa + pmi;
+}
+
+/**
+ * Maximum home PRICE affordable given income and constraints.
+ * Uses binary search to find the price where:
+ *   (monthlyDebts + monthlyHousing) / grossMonthlyIncome <= dtiMax
+ * where monthlyHousing = monthlyPI(price - downPayment, ratePct, years)
+ *                        + price * taxInsRate / 12
+ */
+export function affordability(a: {
+  grossMonthlyIncome: number;
+  monthlyDebts: number;
+  ratePct: number;
+  years: number;
+  dtiMax?: number;
+  downPayment: number;
+  taxInsRate?: number;
+}): number {
+  const dtiMax = a.dtiMax ?? 0.43;
+  const taxInsRate = a.taxInsRate ?? 0.015;
+  const maxMonthlyHousing =
+    dtiMax * a.grossMonthlyIncome - a.monthlyDebts;
+
+  if (maxMonthlyHousing <= 0) return 0;
+
+  // Binary search for price
+  let lo = a.downPayment; // minimum viable price
+  let hi = a.grossMonthlyIncome * 12 * 100; // generous upper bound
+
+  for (let i = 0; i < 100; i++) {
+    const mid = (lo + hi) / 2;
+    const loan = Math.max(0, mid - a.downPayment);
+    const pi = loan > 0 ? monthlyPI(loan, a.ratePct, a.years) : 0;
+    const housing = pi + (mid * taxInsRate) / 12;
+    if (housing <= maxMonthlyHousing) {
+      lo = mid;
+    } else {
+      hi = mid;
+    }
+  }
+
+  return lo;
+}
+
+/**
+ * Number of months to recoup closing costs via monthly payment savings.
+ * Returns Infinity if there are no monthly savings.
+ */
+export function refiBreakevenMonths(a: {
+  currentPayment: number;
+  newPayment: number;
+  closingCosts: number;
+}): number {
+  const savings = a.currentPayment - a.newPayment;
+  if (savings <= 0) return Infinity;
+  return a.closingCosts / savings;
+}
+
+/**
+ * Debt-to-income ratio. Returns Infinity when income is 0.
+ */
+export function dti(monthlyDebt: number, grossMonthlyIncome: number): number {
+  if (grossMonthlyIncome === 0) return Infinity;
+  return monthlyDebt / grossMonthlyIncome;
+}
