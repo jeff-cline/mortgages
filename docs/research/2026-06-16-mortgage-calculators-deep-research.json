@@ -1,0 +1,253 @@
+{
+  "summary": "Deep research harness — fan-out web searches, fetch sources, adversarially verify claims, synthesize a cited report.",
+  "agentCount": 106,
+  "logs": [
+    "Q: Research to enrich a mortgage-calculator SEO/AEO content silo (site: mortgages.p…",
+    "Decomposed into 5 angles: authoritative 2026 figures — conforming & FHA, reverse mortgage / HECM specifics, commercial mortgage, DSCR & DTI thresholds, calculator design + search intent/FAQ, SEO / AEO / E-E-A-T for YMYL finance silo",
+    "commercial mortgage, DSCR & DTI thresholds: 6 results",
+    "reverse mortgage / HECM specifics: 6 results",
+    "authoritative 2026 figures — conforming & FHA: 6 results",
+    "authoritative 2026 figures — conforming & FHA: 3 novel (3 filtered)",
+    "SEO / AEO / E-E-A-T for YMYL finance silo: 6 results",
+    "SEO / AEO / E-E-A-T for YMYL finance silo: 5 novel (1 filtered)",
+    "calculator design + search intent/FAQ: 6 results",
+    "calculator design + search intent/FAQ: 4 novel (2 filtered)",
+    "Fetched 24 sources → 101 claims → verifying top 25",
+    "\"The 2026 FHA national loan limit floor (low-cost a…\": 3-0 ✓",
+    "\"The 2026 baseline conforming loan limit for one-un…\": 3-0 ✓",
+    "\"The 2026 high-cost area ceiling for one-unit prope…\": 3-0 ✓",
+    "\"The 2025 HECM maximum claim amount was $1,209,750,…\": 3-0 ✓",
+    "\"The 2026 HECM (reverse mortgage) maximum claim amo…\": 3-0 ✓",
+    "\"The FHA HECM maximum claim amount (reverse-mortgag…\": 3-0 ✓",
+    "\"The HECM (Home Equity Conversion Mortgage) is the …\": 3-0 ✓",
+    "\"A reverse mortgage's principal limit (how much can…\": 3-0 ✓",
+    "\"The maximum claim amount is the lesser of the home…\": 3-0 ✓",
+    "\"FHA upfront mortgage insurance premium (UFMIP) in …\": 3-0 ✓",
+    "\"The 2026 FHA baseline (floor) loan limit is $524,2…\": 0-3 ✗",
+    "\"The 2026 HECM (reverse mortgage) maximum claim amo…\": 3-0 ✓",
+    "\"The maximum claim amount for a HECM is the lesser …\": 3-0 ✓",
+    "\"FHA MIP removal depends on down payment: loans wit…\": 3-0 ✓",
+    "\"HECM Principal Limit Factors (PLFs) are percentage…\": 3-0 ✓",
+    "\"HECM principal limit factors (PLF) increase with b…\": 1-2 ✗",
+    "\"For standard FHA loans (loan amount <= $524,225) w…\": 1-2 ✗",
+    "\"The HECM principal limit is computed from the maxi…\": 0-3 ✗",
+    "\"The HECM principal limit equals the maximum claim …\": 3-0 ✓",
+    "\"For 2026, FHA loans limit the back-end (total debt…\": 0-3 ✗",
+    "\"For 2026, FHA loans limit the front-end (housing) …\": 2-1 ✓",
+    "\"A best-in-class mortgage payment calculator should…\": 3-0 ✓",
+    "\"PMI (private mortgage insurance) is required when …\": 3-0 ✓",
+    "\"For a 70-year-old borrower with a 5% expected inte…\": 2-1 ✓",
+    "\"FHA borrowers with compensating factors may exceed…\": 3-0 ✓",
+    "Verify done: 25 claims → 20 confirmed, 5 killed"
+  ],
+  "result": {
+    "question": "Research to enrich a mortgage-calculator SEO/AEO content silo (site: mortgages.plus). Need actionable, current (2026) findings for these calculator keywords and their pages: Mortgage Payment, Monthly Mortgage, Mortgage Interest, 30-Year Mortgage, Closing Cost, Mortgage Amortization, Mortgage Payoff, Early Mortgage Payoff, Mortgage Affordability, Mortgage Refinance, Mortgage Rates, Rent vs Buy, Debt-to-Income, Reverse Mortgage, Commercial Mortgage, FHA Mortgage. For each: (1) typical search intent + common \"People Also Ask\"/FAQ questions, (2) the standard inputs and outputs a best-in-class version of that calculator should include, (3) current 2026 reference figures where relevant — e.g. 2026 conforming loan limit, 2026 FHA loan limits + upfront/annual MIP rates, current HECM/reverse-mortgage max claim (lending) limit and principal-limit-factor basics, typical closing-cost percentages, DTI thresholds (FHA/conventional/QM 43%), typical commercial mortgage terms (amortization vs balloon, DSCR). Also: SEO + Answer Engine Optimization best practices for a mortgage-calculator silo (internal linking, schema/structured data, content depth, E-E-A-T for YMYL finance pages). Provide citations.",
+    "findings": [
+      {
+        "claim": "Confirmed 2026 figures for mortgages.plus (11 claims merged). Conforming one-unit limit $832,750 (+3.26%); high-cost ceiling $1,249,125 (FHFA). FHA one-unit floor $541,287, ceiling $1,249,125, eff Jan 1 2026 (HUD). FHA UFMIP 1.75% of base loan; MIP full term under 10% down, ends 11yr if 10%+. HECM max claim $1,249,125 (+$39,375), eff Jan 1 2026; HECM most common reverse mtg, FHA-insured. Reverse principal limit = max claim x PLF (youngest age + expected rate, 5% floor); max claim = lesser of value/sale/HUD limit; ex age70/5%/PLF0.465/$300k=$139,500 (2-1). FHA DTI 31/43 guideline, up to ~47/50 with compensating factors. PMI (conventional) under 20% down ~0.46-1.50%/yr. Best calc: price, down payment $/%, term 30/20/15/10, rate + optional taxes/insurance/HOA/extra; outputs PITI+PMI/MIP.",
+        "confidence": "high",
+        "sources": [
+          "https://www.fhfa.gov/news/news-release/fhfa-announces-conforming-loan-limit-values-for-2026",
+          "https://www.hud.gov/news/hud-no-25-145",
+          "https://www.consumerfinance.gov/consumer-tools/reverse-mortgages/answers/key-terms/",
+          "https://www.bankrate.com/mortgages/mortgage-calculator/",
+          "https://www.nrmlaonline.org/2025/12/11/13072"
+        ],
+        "evidence": "10/11 passed 3-0 vs FHFA/HUD/CFPB/24CFR206.3 + industry; PLF example and 31% front 2-1 secondary. Arithmetic verified."
+      }
+    ],
+    "summary": "2026 figures confirmed for mortgages.plus: conforming $832,750/ceiling $1,249,125 (FHFA); FHA floor $541,287/ceiling $1,249,125 (HUD); HECM max claim $1,249,125 eff Jan 1 2026; FHA UFMIP 1.75%, MIP full-term under 10% vs 11yr at 10%+; DTI 31/43 up to 47/50; PMI under 20% down ~0.46-1.50%/yr. Reverse principal-limit math and best-in-class calculator I/O documented. Gap: 2026 FHA annual MIP schedule unverified.",
+    "caveats": "2026 figures expire when 2027 limits announced; date-stamp pages. 2026 FHA annual MIP schedule NOT confirmed (blog 0.55/0.50% and an FHA floor/ceiling claim refuted 1-2 and 0-3); re-verify vs HUD Mortgagee Letter. 43% FHA back-end DTI as hard cap refuted (0-3): guideline/QM only. PLF example and 31% front 2-1 secondary; illustrative. PLF tables post-Oct-2017 presumed current. HECM authority is HUD ML 2025-22 (aka HUD No.25-145).",
+    "openQuestions": [
+      "Exact 2026 FHA annual MIP rate schedule per HUD Mortgagee Letter?",
+      "2026 closing-cost % (2-5%), commercial terms (balloon, DSCR ~1.2-1.25x), 30yr rate ranges?",
+      "PAA/FAQ + FAQ-schema per keyword (Rent vs Buy, Refinance, Early Payoff)?",
+      "SEO/AEO architecture: internal linking, schema (SoftwareApplication/FAQPage/HowTo), YMYL E-E-A-T?"
+    ],
+    "refuted": [
+      {
+        "claim": "For standard FHA loans (loan amount <= $524,225) with 30-year terms, the 2026 annual MIP is 0.55% for less than 5% down and 0.50% for 5-10% down.",
+        "vote": "1-2",
+        "source": "https://www.amerisave.com/learn/fha-mortgage-insurance-premium-mip-in-complete-cost-breakdown-and-removal-strategies"
+      },
+      {
+        "claim": "The 2026 FHA baseline (floor) loan limit is $524,225 and the high-cost area ceiling is $1,209,750.",
+        "vote": "0-3",
+        "source": "https://www.amerisave.com/learn/fha-mortgage-insurance-premium-mip-in-complete-cost-breakdown-and-removal-strategies"
+      },
+      {
+        "claim": "HECM principal limit factors (PLF) increase with borrower age, ranging roughly from 37.6% at age 62 to 50.5% at age 80, representing the percentage of the maximum claim amount available as loan proceeds.",
+        "vote": "1-2",
+        "source": "https://reverse.mortgage/principal-limit-maximum-claims"
+      },
+      {
+        "claim": "The HECM principal limit is computed from the maximum claim amount, the youngest borrower's age, and the expected interest rate (EIR); e.g., a $850,000 max claim amount with a borrower age of 75 and 6.00% EIR yields a PLF of 0.4819 and a principal limit of $408,850.",
+        "vote": "0-3",
+        "source": "https://longbridge-financial.com/blog/reverse-mortgages/understanding-the-reverse-mortgage-principal-limit-factor-and-expected-interest-rate/"
+      },
+      {
+        "claim": "For 2026, FHA loans limit the back-end (total debt) DTI ratio to 43% of gross monthly income.",
+        "vote": "0-3",
+        "source": "http://fhahandbook.com/debt-ratios.php"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.fhfa.gov/news/news-release/fhfa-announces-conforming-loan-limit-values-for-2026",
+        "quality": "primary",
+        "angle": "authoritative 2026 figures — conforming & FHA",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.amerisave.com/learn/fha-mortgage-insurance-premium-mip-in-complete-cost-breakdown-and-removal-strategies",
+        "quality": "secondary",
+        "angle": "authoritative 2026 figures — conforming & FHA",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.thetruthaboutmortgage.com/2026-fha-loan-limits-climb-to-541287/",
+        "quality": "blog",
+        "angle": "authoritative 2026 figures — conforming & FHA",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.hud.gov/news/hud-no-25-145",
+        "quality": "primary",
+        "angle": "reverse mortgage / HECM specifics",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.nrmlaonline.org/2025/12/11/13072",
+        "quality": "primary",
+        "angle": "reverse mortgage / HECM specifics",
+        "claimCount": 4
+      },
+      {
+        "url": "https://reverse.mortgage/principal-limit-maximum-claims",
+        "quality": "secondary",
+        "angle": "reverse mortgage / HECM specifics",
+        "claimCount": 4
+      },
+      {
+        "url": "https://longbridge-financial.com/blog/reverse-mortgages/understanding-the-reverse-mortgage-principal-limit-factor-and-expected-interest-rate/",
+        "quality": "secondary",
+        "angle": "reverse mortgage / HECM specifics",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.myhecm.com/reverse-mortgage-glossary/hecm-principal-limit-factor-tables-pl-factor-tables/",
+        "quality": "secondary",
+        "angle": "reverse mortgage / HECM specifics",
+        "claimCount": 3
+      },
+      {
+        "url": "https://www.consumerfinance.gov/consumer-tools/reverse-mortgages/answers/key-terms/",
+        "quality": "primary",
+        "angle": "reverse mortgage / HECM specifics",
+        "claimCount": 5
+      },
+      {
+        "url": "https://commercialloandirect.com/2026-dscr-requirements-commercial-real-estate-loans",
+        "quality": "unreliable",
+        "angle": "commercial mortgage, DSCR & DTI thresholds",
+        "claimCount": 0
+      },
+      {
+        "url": "https://mbanc.com/dscr-loans-explained-complete-guide-2026/",
+        "quality": "blog",
+        "angle": "commercial mortgage, DSCR & DTI thresholds",
+        "claimCount": 5
+      },
+      {
+        "url": "http://fhahandbook.com/debt-ratios.php",
+        "quality": "secondary",
+        "angle": "commercial mortgage, DSCR & DTI thresholds",
+        "claimCount": 4
+      },
+      {
+        "url": "https://www.amerisave.com/learn/qm-vs-nonqm-loans-essential-differences-every-home-buyer-must-know-in",
+        "quality": "blog",
+        "angle": "commercial mortgage, DSCR & DTI thresholds",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.emetropolitan.com/loan-programs/conventional-loan/dti-ratio-guidelines/",
+        "quality": "blog",
+        "angle": "commercial mortgage, DSCR & DTI thresholds",
+        "claimCount": 3
+      },
+      {
+        "url": "https://commercialloandirect.com/monthly-payment-calculator",
+        "quality": "unreliable",
+        "angle": "commercial mortgage, DSCR & DTI thresholds",
+        "claimCount": 0
+      },
+      {
+        "url": "https://www.bankrate.com/mortgages/mortgage-calculator/",
+        "quality": "secondary",
+        "angle": "calculator design + search intent/FAQ",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.nerdwallet.com/mortgages/calculators/mortgage-calculator",
+        "quality": "secondary",
+        "angle": "calculator design + search intent/FAQ",
+        "claimCount": 4
+      },
+      {
+        "url": "https://www.churchillmortgage.com/calculators/refinance-break-even-calculator",
+        "quality": "secondary",
+        "angle": "calculator design + search intent/FAQ",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.mortgagecalculator.org/calcs/mortgage-payoff.php",
+        "quality": "secondary",
+        "angle": "calculator design + search intent/FAQ",
+        "claimCount": 4
+      },
+      {
+        "url": "https://outpaceseo.com/article/eeat-seo/",
+        "quality": "blog",
+        "angle": "SEO / AEO / E-E-A-T for YMYL finance silo",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.similarweb.com/blog/marketing/geo/answer-engine-optimization/",
+        "quality": "blog",
+        "angle": "SEO / AEO / E-E-A-T for YMYL finance silo",
+        "claimCount": 5
+      },
+      {
+        "url": "https://www.airops.com/blog/aeo-answer-engine-optimization",
+        "quality": "blog",
+        "angle": "SEO / AEO / E-E-A-T for YMYL finance silo",
+        "claimCount": 5
+      },
+      {
+        "url": "https://digispot.ai/blog/fintech-seo-and-ymyl-strategy",
+        "quality": "blog",
+        "angle": "SEO / AEO / E-E-A-T for YMYL finance silo",
+        "claimCount": 5
+      },
+      {
+        "url": "https://surferseo.com/blog/seo-silo/",
+        "quality": "blog",
+        "angle": "SEO / AEO / E-E-A-T for YMYL finance silo",
+        "claimCount": 5
+      }
+    ],
+    "stats": {
+      "angles": 5,
+      "sourcesFetched": 24,
+      "claimsExtracted": 101,
+      "claimsVerified": 25,
+      "confirmed": 20,
+      "killed": 5,
+      "afterSynthesis": 1,
+      "urlDupes": 1,
+      "budgetDropped": 5,
+      "agentCalls": 106
+    }
+  }
+}

@@ -350,7 +350,7 @@ describe("reverseMortgage", () => {
       homeValue: 2000000,
       expectedRatePct: 6,
     });
-    expect(result.maxClaimAmount).toBe(1149825);
+    expect(result.maxClaimAmount).toBe(1249125);
   });
 
   it("normal case: proceeds positive and less than home value", () => {

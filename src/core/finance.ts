@@ -287,13 +287,13 @@ export function reverseMortgage(a: {
   age: number; // youngest borrower age, >= 62
   homeValue: number;
   expectedRatePct: number; // expected interest rate
-  lendingLimit?: number; // default 1149825 (FHA HECM max claim 2024)
+  lendingLimit?: number; // default 1249125 (FHA HECM max claim, effective Jan 1 2026)
 }): {
   principalLimitFactor: number;
   maxClaimAmount: number;
   availableProceeds: number;
 } {
-  const lendingLimit = a.lendingLimit ?? 1149825;
+  const lendingLimit = a.lendingLimit ?? 1249125;
   const maxClaimAmount = Math.min(a.homeValue, lendingLimit);
   const principalLimitFactor = round(
     clamp(
