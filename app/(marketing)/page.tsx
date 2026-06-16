@@ -16,6 +16,7 @@ export function generateMetadata(): Metadata {
     title: "Compare mortgage offers & run the numbers in minutes",
     description:
       "Mortgages+ helps you compare real, personalized mortgage offers from multiple lenders and run the numbers with free calculators — from pre-qualification to closing. No SSN required, no impact to your credit score.",
+    alternates: { canonical: "/" },
   };
 }
 

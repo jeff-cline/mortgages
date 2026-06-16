@@ -1,0 +1,43 @@
+# Mortgages+
+
+> Free mortgage calculators and side-by-side lender offers for every phase of your home loan — from pre-qualification to closing.
+
+Mortgages+ helps home buyers and homeowners run the numbers and compare real, personalized mortgage offers from multiple lenders. The site offers 16 free, no-signup mortgage calculators covering payments, costs, payoff, amortization, affordability, rates, and specialty loans, plus step-by-step guides for all 8 phases of the mortgage journey. Get a personalized quote in minutes with no SSN required and no impact to your credit score.
+
+## Mortgage Calculators
+
+- [Mortgage Payment Calculator](https://mortgages.plus/mortgage-calculators/mortgage-payment-calculator): Use our free mortgage payment calculator to estimate your full monthly payment — principal, interest, taxes, insurance and PMI — in just seconds. No signup.
+- [Monthly Mortgage Calculator](https://mortgages.plus/mortgage-calculators/monthly-mortgage-calculator): Our monthly mortgage calculator breaks your home loan into an exact monthly figure, including taxes, insurance and PMI, so you can budget with confidence.
+- [Mortgage Interest Calculator](https://mortgages.plus/mortgage-calculators/mortgage-interest-calculator): A mortgage interest calculator showing total interest paid over your loan and how rate, term and extra payments change it. Compare scenarios for free.
+- [30-Year Mortgage Calculator](https://mortgages.plus/mortgage-calculators/30-year-mortgage-calculator): Use this 30-year mortgage calculator to estimate monthly payments and total interest on a 30-year fixed loan, and compare it against shorter terms instantly.
+- [Closing Cost Calculator](https://mortgages.plus/mortgage-calculators/closing-cost-calculator): Our closing cost calculator estimates lender fees, title charges, taxes and prepaids so you know your true cash to close before you sign at the closing table.
+- [Mortgage Amortization Calculator](https://mortgages.plus/mortgage-calculators/mortgage-amortization-calculator): A mortgage amortization calculator that builds a full schedule of principal, interest and balance for every payment, plus how extra payments speed payoff.
+- [Mortgage Payoff Calculator](https://mortgages.plus/mortgage-calculators/mortgage-payoff-calculator): Use our mortgage payoff calculator to see how extra payments shorten your term and slash total interest. Find your new payoff date and savings in seconds.
+- [Early Mortgage Payoff Calculator](https://mortgages.plus/mortgage-calculators/early-mortgage-payoff-calculator): An early mortgage payoff calculator showing how extra principal, biweekly or lump-sum payments cut years off your loan and save thousands in interest.
+- [Mortgage Affordability Calculator](https://mortgages.plus/mortgage-calculators/mortgage-affordability-calculator): Our mortgage affordability calculator estimates how much house you can buy from income, debts and down payment, using lender DTI rules. Get your range fast.
+- [Mortgage Refinance Calculator](https://mortgages.plus/mortgage-calculators/mortgage-refinance-calculator): Use our mortgage refinance calculator to compare your current loan to a new one, find your break-even point, and see monthly and lifetime savings instantly.
+- [Mortgage Rates Calculator](https://mortgages.plus/mortgage-calculators/mortgage-rates-calculator): A mortgage rates calculator showing how different interest rates change your monthly payment and total interest, so you see what each rate really costs you.
+- [Rent vs. Buy Calculator](https://mortgages.plus/mortgage-calculators/rent-vs-buy-calculator): Our rent vs. buy calculator compares the true cost of renting against owning over time, factoring equity, taxes and upkeep, to show which option wins for you.
+- [Debt-to-Income Calculator](https://mortgages.plus/mortgage-calculators/debt-to-income-calculator): Use our debt-to-income calculator to find your DTI ratio, see how lenders view it, and learn what you need to qualify for a mortgage. Quick, free, accurate.
+- [Reverse Mortgage Calculator](https://mortgages.plus/mortgage-calculators/reverse-mortgage-calculator): Our reverse mortgage calculator estimates how much equity a homeowner 62+ could access through a HECM, based on age, home value and current rates. Free tool.
+- [Commercial Mortgage Calculator](https://mortgages.plus/mortgage-calculators/commercial-mortgage-calculator): A commercial mortgage calculator estimating payments on amortizing and balloon loans, including the balloon balance due at term, for investors and businesses.
+- [FHA Mortgage Calculator](https://mortgages.plus/mortgage-calculators/fha-mortgage-calculator): Our FHA mortgage calculator estimates your monthly payment with upfront and annual mortgage insurance, so first-time buyers see the true cost of an FHA loan.
+
+## Guides
+
+Step-by-step guidance for each phase of the mortgage journey:
+
+- [Pre-Qualification](https://mortgages.plus/phases/pre-qualification): Get a quick, no-pressure estimate of what you can borrow.
+- [Pre-Approval](https://mortgages.plus/phases/pre-approval): Turn an estimate into a verified, offer-ready commitment letter.
+- [House Hunting](https://mortgages.plus/phases/house-hunting): Find the right home — and the right monthly payment to match.
+- [Loan Application](https://mortgages.plus/phases/application): Submit a complete, accurate application to start the clock to closing.
+- [Processing & Underwriting](https://mortgages.plus/phases/underwriting): The lender verifies everything and issues your clear-to-close.
+- [Closing](https://mortgages.plus/phases/closing): Sign, fund, and get the keys — with no last-minute surprises.
+- [Servicing & Payments](https://mortgages.plus/phases/servicing): Manage your loan, protect your home, and pay it off smarter.
+- [Refinancing](https://mortgages.plus/phases/refinance): Lower your rate, change your term, or tap equity — when the math works.
+
+## Key pages
+
+- [Mortgages+ Home](https://mortgages.plus/): Compare mortgage offers and run the numbers with free calculators.
+- [Mortgage Calculators](https://mortgages.plus/mortgage-calculators): All 16 free mortgage calculators in one place.
+- [Get a Quote](https://mortgages.plus/quote): Compare real, personalized offers from multiple lenders — no SSN, no credit impact.
