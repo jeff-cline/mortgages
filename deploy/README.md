@@ -58,8 +58,12 @@ certbot --nginx -d mortgages.plus -d www.mortgages.plus --redirect \
 ## Redeploy (code update)
 
 ```bash
-rsync -az --exclude node_modules --exclude .next --exclude .env ./ root@137.220.56.129:/var/www/mortgages/
-ssh root@137.220.56.129 'cd /var/www/mortgages && npm install && npm run build && npm run db:migrate && pm2 restart mortgagesplus --update-env'
+rsync -az --delete --exclude node_modules --exclude .next --exclude .env --exclude .git \
+  ./ root@137.220.56.129:/var/www/mortgages/
+# IMPORTANT: the build needs devDependencies (tailwind, typescript). Do NOT run npm install
+# with NODE_ENV=production (it omits devDeps and the build fails on @tailwindcss/postcss).
+ssh root@137.220.56.129 'cd /var/www/mortgages && NODE_ENV=development npm install --include=dev --no-audit --no-fund && npm run build && pm2 restart mortgagesplus --update-env'
+# run `npm run db:migrate` only when there are new drizzle migrations.
 ```
 
 ## Safety notes
