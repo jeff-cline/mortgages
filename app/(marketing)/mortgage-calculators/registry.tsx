@@ -66,8 +66,8 @@ export const CALCULATORS: CalculatorEntry[] = [
     art: "payment",
     intro: [
       "A mortgage payment calculator shows the true monthly cost of owning a home, not just the principal and interest most quotes advertise. Enter your home price, down payment, interest rate and loan term, and you'll see the full PITI payment — principal, interest, taxes and insurance — plus PMI and HOA dues where they apply. It's the number that actually hits your bank account each month.",
-      "This tool is built for first-time buyers comparing budgets and for anyone weighing a specific listing against their income. Lenders qualify you on total PITI, so knowing it before you shop keeps you from falling in love with a house you can't comfortably afford. A larger down payment lowers both your loan amount and your private mortgage insurance, which kicks in below 20% down.",
-      "Use the result to set a realistic price ceiling, then stress-test it: nudge the rate up half a point to see how sensitive your payment is, and confirm the total still fits within roughly 28% of your gross monthly income. When the numbers work, request a personalized quote to lock a real rate.",
+      "This tool is built for first-time buyers comparing budgets and for anyone weighing a specific listing against their income. Lenders qualify you on total PITI, so knowing it before you shop keeps you from falling in love with a house you can't comfortably afford. A larger down payment lowers both your loan amount and your private mortgage insurance (PMI), which kicks in below 20% down and typically runs about 0.46% to 1.50% of the loan amount per year until you reach roughly 20% equity.",
+      "Use the result to set a realistic price ceiling, then stress-test it: nudge the rate up half a point to see how sensitive your payment is, and confirm the total still fits within roughly 28% of your gross monthly income. As of 2026, the baseline conforming loan limit for a one-unit home is $832,750 (up to $1,249,125 in high-cost areas); borrowing above your local limit pushes you into a jumbo loan with different pricing. When the numbers work, request a personalized quote to lock a real rate.",
     ],
     faq: [
       {
@@ -80,7 +80,7 @@ export const CALCULATORS: CalculatorEntry[] = [
       },
       {
         q: "Why is my estimated payment higher than the rate quote?",
-        a: "Most advertised quotes show only principal and interest. Taxes and insurance are escrowed monthly and can add hundreds of dollars, and PMI applies below 20% down. A full payment calculator surfaces all of these so there are no surprises.",
+        a: "Most advertised quotes show only principal and interest. Taxes and insurance are escrowed monthly and can add hundreds of dollars, and PMI — typically about 0.46% to 1.50% of the loan amount a year — applies below 20% down. A full payment calculator surfaces all of these so there are no surprises.",
       },
       {
         q: "Can I lower my monthly mortgage payment?",
@@ -107,8 +107,8 @@ export const CALCULATORS: CalculatorEntry[] = [
     art: "monthly",
     intro: [
       "A monthly mortgage calculator answers the question most buyers care about most: what will I actually pay every month? Plug in your loan amount, rate and term, and it converts the big purchase price into a single, repeatable monthly number — the figure your budget has to absorb for the next 15 or 30 years.",
-      "Unlike a quick principal-and-interest estimate, a thorough monthly calculation folds in escrowed property taxes, homeowners insurance, and PMI when you put down less than 20%. That matters because these add-ons routinely raise a payment by 20% or more. Seeing the all-in monthly cost helps renters compare buying to their current rent on equal footing.",
-      "Once you have your monthly figure, map it against your take-home pay rather than gross income for a gut-check on cash flow. A handy tip: if the payment feels tight, extending from a 15- to a 30-year term lowers it meaningfully, though you'll pay more interest over the life of the loan.",
+      "Unlike a quick principal-and-interest estimate, a thorough monthly calculation folds in escrowed property taxes, homeowners insurance, and PMI when you put down less than 20%. That PMI typically costs about 0.46% to 1.50% of the loan amount per year and falls away once you reach roughly 20% equity. These add-ons routinely raise a payment by 20% or more, so seeing the all-in monthly cost helps renters compare buying to their current rent on equal footing.",
+      "Once you have your monthly figure, map it against your take-home pay rather than gross income for a gut-check on cash flow. A handy tip: if the payment feels tight, extending from a 15- to a 30-year term lowers it meaningfully, though you'll pay more interest over the life of the loan. Keep in mind that as of 2026 a one-unit loan above $832,750 (or $1,249,125 in high-cost areas) is treated as a jumbo loan, which can carry stricter terms.",
     ],
     faq: [
       {
@@ -125,7 +125,7 @@ export const CALCULATORS: CalculatorEntry[] = [
       },
       {
         q: "Should I compare monthly cost to rent?",
-        a: "Yes, but compare honestly. Add taxes, insurance, PMI and expected maintenance to the loan payment, then weigh that against rent. Buying builds equity, but the true monthly cost of ownership is usually higher than principal and interest alone.",
+        a: "Yes, but compare honestly. Add taxes, insurance, PMI (typically about 0.46% to 1.50% of the loan a year below 20% down) and expected maintenance to the loan payment, then weigh that against rent. Buying builds equity, but the true monthly cost of ownership is usually higher than principal and interest alone.",
       },
     ],
     related: [
@@ -189,7 +189,7 @@ export const CALCULATORS: CalculatorEntry[] = [
     art: "thirty-year",
     intro: [
       "A 30-year mortgage calculator estimates the monthly payment and total interest for the most popular home loan in America — the 30-year fixed. By spreading repayment across 360 months, this term produces the lowest monthly payment of the standard options, which is why it's the default choice for most first-time and move-up buyers.",
-      "Enter your loan amount and rate to see how affordable the monthly figure becomes, then notice the trade-off: a longer term means you pay interest for three decades, so lifetime interest is far higher than on a 15- or 20-year loan. This calculator helps you decide whether the lower payment is worth the added interest, given your budget and goals.",
+      "Enter your loan amount and rate to see how affordable the monthly figure becomes, then notice the trade-off: a longer term means you pay interest for three decades, so lifetime interest is far higher than on a 15- or 20-year loan. This calculator helps you decide whether the lower payment is worth the added interest, given your budget and goals. As of 2026, a 30-year fixed loan at or below the conforming limit — $832,750 on a one-unit home, up to $1,249,125 in high-cost areas — usually earns the best pricing, since larger balances become jumbo loans.",
       "A smart way to use it: take the comfortable 30-year payment, then add voluntary extra principal whenever cash allows. You keep the safety of a low required payment but pay the loan down faster. Compare the 30-year result with a 15-year scenario to see exactly how much interest that flexibility costs.",
     ],
     faq: [
@@ -398,8 +398,8 @@ export const CALCULATORS: CalculatorEntry[] = [
     art: "affordability",
     intro: [
       "A mortgage affordability calculator estimates the home price and loan amount you can realistically qualify for, based on your income, monthly debts, down payment and the prevailing interest rate. Rather than guessing, you get a target price range grounded in the same debt-to-income math lenders use to approve loans.",
-      "This is the first tool to run before house hunting. Lenders generally want your total housing payment near 28% of gross monthly income and all debts under about 36% to 43%. By entering your real numbers, you avoid shopping above your range or getting pre-approved for a payment that strains your budget.",
-      "Use the result as a ceiling, not a goal — many buyers comfortably spend less than the maximum to leave room for savings and life. A practical tip: paying down a car loan or credit card before applying lowers your DTI and can meaningfully increase the home price you qualify for.",
+      "This is the first tool to run before house hunting. Conventional lenders generally target a housing payment near 28% of gross monthly income (front-end) and total debts around 36% (back-end), though many will stretch to roughly 45% to 50% with strong compensating factors like reserves or excellent credit. The 43% figure you'll often hear is a common qualified-mortgage guideline, not a universal hard cap. By entering your real numbers, you avoid shopping above your range or getting pre-approved for a payment that strains your budget.",
+      "Use the result as a ceiling, not a goal — many buyers comfortably spend less than the maximum to leave room for savings and life. A practical tip: paying down a car loan or credit card before applying lowers your DTI and can meaningfully increase the home price you qualify for. Note too that as of 2026 a one-unit loan above $832,750 (or $1,249,125 in high-cost areas) becomes a jumbo loan, which often demands a lower DTI and larger down payment to qualify.",
     ],
     faq: [
       {
@@ -408,7 +408,7 @@ export const CALCULATORS: CalculatorEntry[] = [
       },
       {
         q: "What is the 28/36 rule?",
-        a: "It's a lender guideline suggesting your housing costs stay at or below 28% of gross monthly income and total debt payments below 36%. Many loan programs allow higher ratios, but 28/36 is a conservative affordability benchmark.",
+        a: "It's a conventional-lender guideline suggesting your housing costs stay at or below 28% of gross monthly income (front-end) and total debt payments below 36% (back-end). Many lenders allow higher ratios — often up to about 45% to 50% with compensating factors — but 28/36 is a conservative affordability benchmark.",
       },
       {
         q: "Does my down payment affect affordability?",
@@ -480,7 +480,7 @@ export const CALCULATORS: CalculatorEntry[] = [
     art: "rates",
     intro: [
       "A mortgage rates calculator shows how the interest rate you're offered translates into a monthly payment and a lifetime interest cost. By comparing several rates side by side, you can see in dollars exactly what a quarter- or half-point difference means — both for your monthly budget and for the total you'll pay over the life of the loan.",
-      "This tool is for borrowers shopping lenders or deciding whether to pay points to buy down their rate. Rates depend on your credit score, down payment, loan type and market conditions, and small differences compound enormously over 30 years. Seeing the impact helps you judge whether a lower rate quote is worth higher fees.",
+      "This tool is for borrowers shopping lenders or deciding whether to pay points to buy down their rate. Rates depend on your credit score, down payment, loan type, loan size and market conditions, and small differences compound enormously over 30 years. Loan size matters because, as of 2026, balances above the conforming limit — $832,750 on a one-unit home, up to $1,249,125 in high-cost areas — are jumbo loans that are often priced differently from conforming ones. Seeing the impact helps you judge whether a lower rate quote is worth higher fees.",
       "Use the calculator to set a target: figure out which rate keeps your payment within budget, then shop multiple lenders to hit it. A practical tip — get quotes within a short window so rate-shopping inquiries count as a single credit pull, and always compare the APR, which folds in fees, not just the headline rate.",
     ],
     faq: [
@@ -562,13 +562,13 @@ export const CALCULATORS: CalculatorEntry[] = [
     art: "dti",
     intro: [
       "A debt-to-income calculator finds the percentage of your gross monthly income that goes toward debt payments — the single most important number lenders use to decide whether you qualify for a mortgage. Enter your income and monthly debts to see both your front-end ratio (housing only) and back-end ratio (all debts).",
-      "DTI matters because lenders cap how much of your income can be committed to debt. Many conventional loans look for a back-end DTI at or below 43%, though some programs allow more. Knowing your ratio before applying tells you whether you're in qualifying range and how much room you have for a mortgage payment.",
+      "DTI matters because lenders cap how much of your income can be committed to debt. Conventional loans generally target about 28% front-end (housing) and 36% back-end (total debt), with many lenders allowing up to roughly 45% to 50% when you have strong compensating factors. FHA commonly uses a 31% / 43% guideline but can go higher — often around 47% / 50% — with compensating factors. The 43% figure is a common qualified-mortgage threshold, not a universal hard cap. Knowing your ratio before applying tells you whether you're in qualifying range and how much room you have for a mortgage payment.",
       "Use the result to plan: if your DTI is high, paying off a credit card or car loan can quickly improve it and boost your borrowing power. A practical tip — lenders count the minimum required payment on revolving debts, so even partially paying down balances and lowering those minimums can help your ratio.",
     ],
     faq: [
       {
         q: "What is a good debt-to-income ratio for a mortgage?",
-        a: "Lenders generally prefer a back-end DTI at or below 43%, with many favoring 36% or less. Some loan programs allow higher ratios with compensating factors like strong credit or reserves, but lower is always better.",
+        a: "Conventional loans generally aim for about 28% front-end and 36% back-end, though many lenders allow up to roughly 45% to 50% with compensating factors. FHA commonly uses 31% / 43% and can stretch to around 47% / 50%. The 43% figure is a common qualified-mortgage guideline, not a hard cap — but lower is always better.",
       },
       {
         q: "How is debt-to-income ratio calculated?",
@@ -605,7 +605,7 @@ export const CALCULATORS: CalculatorEntry[] = [
     art: "reverse",
     intro: [
       "A reverse mortgage calculator estimates how much of your home equity you could convert to cash through a reverse mortgage, typically a Home Equity Conversion Mortgage (HECM). Designed for homeowners aged 62 and older, these loans let you tap equity without monthly mortgage payments, with the balance repaid when you sell, move out or pass away.",
-      "The amount available depends mainly on the youngest borrower's age, your home's value (up to a federal lending limit), and current interest rates — older borrowers and higher values generally unlock more. This calculator gives a ballpark figure so retirees can gauge whether a reverse mortgage could supplement income, cover expenses, or eliminate an existing mortgage payment.",
+      "The amount available depends mainly on the youngest borrower's age, your home's value (capped at the FHA maximum claim amount, which is $1,249,125 for 2026), and current interest rates. Your proceeds equal that maximum claim amount multiplied by a principal limit factor (PLF) set by HUD: an older youngest borrower and a lower expected interest rate generally produce a higher PLF and more available cash. This calculator gives a ballpark figure so retirees can gauge whether a reverse mortgage could supplement income, cover expenses, or eliminate an existing mortgage payment.",
       "Use the estimate as a starting point for deeper research, since reverse mortgages carry upfront costs, ongoing fees and important obligations. A practical tip: you must keep paying property taxes, homeowners insurance and upkeep, and HUD requires independent counseling before you can take out a HECM, which protects you and clarifies the trade-offs.",
     ],
     faq: [
@@ -615,7 +615,7 @@ export const CALCULATORS: CalculatorEntry[] = [
       },
       {
         q: "How much money can I get from a reverse mortgage?",
-        a: "The available amount depends on the youngest borrower's age, your home's appraised value up to a federal limit, and current interest rates. Older borrowers with more equity and lower rates can typically access more of their equity.",
+        a: "Your proceeds equal the maximum claim amount — your home's appraised value capped at the 2026 FHA limit of $1,249,125 — times a principal limit factor (PLF) set by HUD. Because the PLF rises with the youngest borrower's age and falls as the expected interest rate climbs (it has a 5% floor), older borrowers and lower rates generally unlock more equity.",
       },
       {
         q: "Do I have to repay a reverse mortgage?",
@@ -646,13 +646,13 @@ export const CALCULATORS: CalculatorEntry[] = [
     art: "commercial",
     intro: [
       "A commercial mortgage calculator estimates payments on loans for income-producing or business-use property — offices, retail, multifamily, warehouses and the like. Commercial loans work differently from home mortgages: they often use a longer amortization for the payment but a shorter term, leaving a large balloon balance due at the end.",
-      "This tool helps investors and business owners model the monthly payment and, crucially, the balloon amount they'll need to refinance or pay off when the term expires. Commercial loans also tend to carry higher rates than residential mortgages and shorter terms — often 5, 7 or 10 years — so understanding the structure is essential before committing.",
-      "Use the calculator to test how amortization length and term interact, and to confirm the property's income can comfortably cover the payment. A practical tip — lenders evaluate the debt service coverage ratio (net operating income divided by debt payments), typically wanting it above about 1.25, so size your loan with that cushion in mind.",
+      "This tool helps investors and business owners model the monthly payment and, crucially, the balloon amount they'll need to refinance or pay off when the term expires. Commercial loans commonly amortize over 25 to 30 years but mature far sooner — often on 5- to 10-year terms — leaving a balloon balance due at the end. They also tend to carry higher rates than residential mortgages, so understanding the structure is essential before committing.",
+      "Use the calculator to test how amortization length and term interact, and to confirm the property's income can comfortably cover the payment. A practical tip — lenders evaluate the debt-service-coverage ratio (net operating income divided by debt payments) and typically require a minimum of about 1.20x to 1.25x, so size your loan with that cushion in mind.",
     ],
     faq: [
       {
         q: "How is a commercial mortgage different from a residential one?",
-        a: "Commercial loans usually have shorter terms, higher rates, and a balloon payment, and they're underwritten on the property's income rather than just personal credit. Amortization may stretch 20 to 25 years even when the loan term is only 5 to 10.",
+        a: "Commercial loans usually have shorter terms, higher rates, and a balloon payment, and they're underwritten on the property's income rather than just personal credit. Amortization commonly stretches 25 to 30 years even when the loan term is only 5 to 10, leaving a balloon balance due at maturity.",
       },
       {
         q: "What is a balloon payment?",
@@ -660,7 +660,7 @@ export const CALCULATORS: CalculatorEntry[] = [
       },
       {
         q: "What is debt service coverage ratio (DSCR)?",
-        a: "DSCR is the property's net operating income divided by its annual debt payments. Commercial lenders generally want a DSCR of at least about 1.25, meaning income comfortably exceeds the loan payment, before approving financing.",
+        a: "DSCR is the property's net operating income divided by its annual debt payments. Commercial lenders generally require a minimum DSCR of about 1.20x to 1.25x, meaning income comfortably exceeds the loan payment, before approving financing.",
       },
       {
         q: "How much down payment do commercial loans require?",
@@ -686,9 +686,9 @@ export const CALCULATORS: CalculatorEntry[] = [
     category: "Specialty Loans",
     art: "fha",
     intro: [
-      "An FHA mortgage calculator estimates the monthly payment on a loan insured by the Federal Housing Administration, including the mortgage insurance premiums unique to these loans. FHA loans are popular with first-time and lower-credit buyers because they allow down payments as low as 3.5% and have more flexible qualifying standards.",
-      "What sets FHA financing apart is mortgage insurance: an upfront premium (UFMIP) usually added to the loan balance, plus an annual premium (MIP) split into your monthly payment. This calculator folds both into the estimate so you see the genuine cost of an FHA loan, not just principal and interest, and can compare it fairly to a conventional option.",
-      "Use the result to weigh FHA against conventional financing — FHA can be cheaper to qualify for with a smaller down payment or lower credit, but its mortgage insurance often lasts the life of the loan. A practical tip: many borrowers later refinance into a conventional loan once they build equity and improve credit, to shed ongoing MIP.",
+      "An FHA mortgage calculator estimates the monthly payment on a loan insured by the Federal Housing Administration, including the mortgage insurance premiums unique to these loans. FHA loans are popular with first-time and lower-credit buyers because they allow down payments as low as 3.5% and have more flexible qualifying standards. For 2026, FHA loan limits run from a floor of $541,287 on a one-unit home in low-cost areas up to a ceiling of $1,249,125 in high-cost areas.",
+      "What sets FHA financing apart is mortgage insurance: an upfront premium (UFMIP) equal to 1.75% of the base loan amount, usually financed into the loan balance, plus an annual premium (MIP) — typically around 0.55% a year for most 30-year loans with under 5% down — split into your monthly payment. This calculator folds both into the estimate so you see the genuine cost of an FHA loan, not just principal and interest, and can compare it fairly to a conventional option.",
+      "Use the result to weigh FHA against conventional financing — FHA can be cheaper to qualify for with a smaller down payment or lower credit, but its mortgage insurance lasts the full loan term when you put down less than 10% (it cancels after 11 years with 10% or more down). A practical tip: many borrowers later refinance into a conventional loan once they build equity and improve credit, to shed ongoing MIP.",
     ],
     faq: [
       {
@@ -697,11 +697,11 @@ export const CALCULATORS: CalculatorEntry[] = [
       },
       {
         q: "What is FHA mortgage insurance (MIP)?",
-        a: "FHA loans require two premiums: an upfront premium (UFMIP), often financed into the loan, and an annual premium (MIP) paid monthly. Together they protect the lender and let the FHA back loans with low down payments.",
+        a: "FHA loans require two premiums: an upfront premium (UFMIP) of 1.75% of the base loan amount, usually financed into the loan, and an annual premium (MIP) — typically around 0.55% a year for most 30-year loans with under 5% down — paid monthly. Together they protect the lender and let the FHA back loans with low down payments.",
       },
       {
         q: "Does FHA mortgage insurance ever go away?",
-        a: "On most current FHA loans with the minimum down payment, annual MIP lasts the life of the loan. The common way to remove it is to refinance into a conventional loan once you have enough equity and qualifying credit.",
+        a: "It depends on your down payment. If you put down less than 10%, annual MIP lasts the full loan term; if you put down 10% or more, it cancels after 11 years. Many borrowers with the minimum 3.5% down instead refinance into a conventional loan once they have enough equity and qualifying credit to shed MIP sooner.",
       },
       {
         q: "FHA or conventional — which is better?",
