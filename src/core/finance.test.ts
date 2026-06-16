@@ -7,6 +7,8 @@ import {
   affordability,
   refiBreakevenMonths,
   dti,
+  extraPayment,
+  rentVsBuy,
 } from "./finance";
 
 // ─── TASK A: Monthly payment & amortization ───────────────────────────────────
@@ -253,5 +255,73 @@ describe("dti", () => {
 
   it("returns 0 when debt is 0", () => {
     expect(dti(0, 5000)).toBe(0);
+  });
+});
+
+// ─── TASK C: extra payment + rent-vs-buy ─────────────────────────────────────
+
+describe("extraPayment", () => {
+  it("extra payment > 0 reduces payoff months", () => {
+    const base = extraPayment({ principal: 200000, ratePct: 5, years: 30, extraMonthly: 0 });
+    const extra = extraPayment({ principal: 200000, ratePct: 5, years: 30, extraMonthly: 200 });
+    expect(extra.payoffMonths).toBeLessThan(base.payoffMonths);
+  });
+
+  it("extra payment > 0 produces positive interestSaved", () => {
+    const result = extraPayment({ principal: 200000, ratePct: 5, years: 30, extraMonthly: 200 });
+    expect(result.interestSaved).toBeGreaterThan(0);
+  });
+
+  it("monthsSaved = years*12 - payoffMonths", () => {
+    const result = extraPayment({ principal: 200000, ratePct: 5, years: 30, extraMonthly: 200 });
+    expect(result.monthsSaved).toBe(30 * 12 - result.payoffMonths);
+  });
+
+  it("no extra payment: monthsSaved = 0 and interestSaved ≈ 0", () => {
+    const result = extraPayment({ principal: 200000, ratePct: 5, years: 30, extraMonthly: 0 });
+    expect(result.monthsSaved).toBe(0);
+    expect(result.interestSaved).toBeCloseTo(0, 0);
+  });
+
+  it("works with zero interest rate", () => {
+    const result = extraPayment({ principal: 120000, ratePct: 0, years: 10, extraMonthly: 0 });
+    expect(result.payoffMonths).toBe(120);
+    expect(result.monthsSaved).toBe(0);
+  });
+});
+
+describe("rentVsBuy", () => {
+  const base = {
+    homePrice: 400000,
+    downPayment: 80000,
+    ratePct: 6.5,
+    years: 30,
+    monthlyRent: 2000,
+    horizonYears: 10,
+  };
+
+  it("all output values are finite", () => {
+    const result = rentVsBuy(base);
+    expect(isFinite(result.buyCost)).toBe(true);
+    expect(isFinite(result.rentCost)).toBe(true);
+    expect(isFinite(result.advantage)).toBe(true);
+  });
+
+  it("advantage === rentCost - buyCost", () => {
+    const result = rentVsBuy(base);
+    expect(result.advantage).toBeCloseTo(result.rentCost - result.buyCost, 2);
+  });
+
+  it("uses default appreciationPct=3 and rentInflationPct=3", () => {
+    const explicit = rentVsBuy({ ...base, appreciationPct: 3, rentInflationPct: 3 });
+    const defaults = rentVsBuy(base);
+    expect(defaults.buyCost).toBeCloseTo(explicit.buyCost, 2);
+    expect(defaults.rentCost).toBeCloseTo(explicit.rentCost, 2);
+  });
+
+  it("higher rent inflation makes buying more advantageous", () => {
+    const lowInflation = rentVsBuy({ ...base, rentInflationPct: 1 });
+    const highInflation = rentVsBuy({ ...base, rentInflationPct: 5 });
+    expect(highInflation.advantage).toBeGreaterThan(lowInflation.advantage);
   });
 });

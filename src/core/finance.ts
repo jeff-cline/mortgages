@@ -156,3 +156,107 @@ export function dti(monthlyDebt: number, grossMonthlyIncome: number): number {
   if (grossMonthlyIncome === 0) return Infinity;
   return monthlyDebt / grossMonthlyIncome;
 }
+
+// ─── Task C: Extra payment payoff & rent-vs-buy ───────────────────────────────
+
+/**
+ * Simulate amortization with an extra monthly principal payment.
+ */
+export function extraPayment(a: {
+  principal: number;
+  ratePct: number;
+  years: number;
+  extraMonthly: number;
+}): { monthsSaved: number; interestSaved: number; payoffMonths: number } {
+  const baseMonths = a.years * 12;
+  const r = a.ratePct / 100 / 12;
+  const payment = monthlyPI(a.principal, a.ratePct, a.years);
+  const baseTotalInterest = totalInterest(a.principal, a.ratePct, a.years);
+
+  let balance = a.principal;
+  let months = 0;
+  let interestPaid = 0;
+
+  while (balance > 1e-6 && months < baseMonths) {
+    months++;
+    const interest = balance * r;
+    interestPaid += interest;
+    // Standard principal + extra, capped at remaining balance
+    let principalPaid = payment - interest + a.extraMonthly;
+    if (principalPaid > balance) principalPaid = balance;
+    balance -= principalPaid;
+    if (balance < 1e-6) balance = 0;
+  }
+
+  const payoffMonths = months;
+  const monthsSaved = baseMonths - payoffMonths;
+  const interestSaved = baseTotalInterest - interestPaid;
+
+  return { payoffMonths, monthsSaved, interestSaved };
+}
+
+/**
+ * Compare total cost of buying vs renting over a given horizon.
+ *
+ * buyCost = mortgage payments made + downPayment + taxes/ins (1.5%/yr)
+ *           − home equity accumulated − home appreciation gain
+ *
+ * rentCost = sum of monthly rent growing at rentInflationPct per year
+ *
+ * advantage = rentCost − buyCost  (positive → buying cheaper)
+ */
+export function rentVsBuy(a: {
+  homePrice: number;
+  downPayment: number;
+  ratePct: number;
+  years: number;
+  monthlyRent: number;
+  appreciationPct?: number;
+  rentInflationPct?: number;
+  horizonYears: number;
+}): { buyCost: number; rentCost: number; advantage: number } {
+  const appreciationPct = a.appreciationPct ?? 3;
+  const rentInflationPct = a.rentInflationPct ?? 3;
+  const horizonMonths = a.horizonYears * 12;
+  const principal = a.homePrice - a.downPayment;
+
+  // Full amortization schedule (up to full term)
+  const schedule = amortization(principal, a.ratePct, a.years);
+
+  // Sum mortgage payments + taxes/ins over horizon
+  let mortgageTotal = 0;
+  let principalPaidInHorizon = 0;
+
+  for (let m = 0; m < horizonMonths && m < schedule.length; m++) {
+    mortgageTotal += schedule[m].payment;
+    principalPaidInHorizon += schedule[m].principal;
+  }
+
+  // Taxes + insurance: 1.5%/yr of home price
+  const taxInsTotal = a.homePrice * 0.015 * a.horizonYears;
+
+  // Home value at end of horizon
+  const futureHomeValue =
+    a.homePrice * Math.pow(1 + appreciationPct / 100, a.horizonYears);
+  const appreciationGain = futureHomeValue - a.homePrice;
+
+  // Total equity gained = down payment + principal paid in horizon
+  const equityBuilt = a.downPayment + principalPaidInHorizon;
+
+  // buyCost = cash out - gain
+  const buyCost =
+    mortgageTotal + a.downPayment + taxInsTotal - equityBuilt - appreciationGain;
+
+  // Rent cost: monthly rent grows rentInflationPct per year, sum over horizon
+  let rentCost = 0;
+  for (let m = 0; m < horizonMonths; m++) {
+    const yearIndex = Math.floor(m / 12);
+    const monthlyRentNow =
+      a.monthlyRent * Math.pow(1 + rentInflationPct / 100, yearIndex);
+    rentCost += monthlyRentNow;
+  }
+
+  const advantage = rentCost - buyCost;
+
+  return { buyCost, rentCost, advantage };
+}
