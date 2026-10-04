@@ -8,3 +8,14 @@ dist/
 
 # TypeScript build cache
 *.tsbuildinfo
+
+# --- added when this app was put under version control ---
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+coverage/
+.cache/
+*.mp4
+*.mov
+private-uploads/

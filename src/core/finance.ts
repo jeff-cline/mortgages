@@ -260,3 +260,144 @@ export function rentVsBuy(a: {
 
   return { buyCost, rentCost, advantage };
 }
+
+// ─── Task D: Reverse mortgage (HECM-style estimate) ───────────────────────────
+
+function round(value: number, decimals: number): number {
+  const f = Math.pow(10, decimals);
+  return Math.round(value * f) / f;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
+}
+
+/**
+ * Reverse mortgage (HECM-style) marketing ESTIMATOR.
+ *
+ * This is a rough approximation for illustration only — it is NOT an official
+ * HUD principal limit factor (PLF) lookup. Real HECM PLFs come from published
+ * HUD tables keyed on age and expected rate.
+ *
+ * maxClaimAmount = min(homeValue, lendingLimit)
+ * PLF = clamp(0.40 + (age-62)*0.007 - max(0, expectedRatePct-5)*0.02, 0.15, 0.75)
+ * availableProceeds = maxClaimAmount * PLF
+ */
+export function reverseMortgage(a: {
+  age: number; // youngest borrower age, >= 62
+  homeValue: number;
+  expectedRatePct: number; // expected interest rate
+  lendingLimit?: number; // default 1249125 (FHA HECM max claim, effective Jan 1 2026)
+}): {
+  principalLimitFactor: number;
+  maxClaimAmount: number;
+  availableProceeds: number;
+} {
+  const lendingLimit = a.lendingLimit ?? 1249125;
+  const maxClaimAmount = Math.min(a.homeValue, lendingLimit);
+  const principalLimitFactor = round(
+    clamp(
+      0.4 +
+        (a.age - 62) * 0.007 -
+        Math.max(0, a.expectedRatePct - 5) * 0.02,
+      0.15,
+      0.75
+    ),
+    4
+  );
+  const availableProceeds = round(maxClaimAmount * principalLimitFactor, 2);
+  return { principalLimitFactor, maxClaimAmount, availableProceeds };
+}
+
+// ─── Task E: Commercial mortgage (amortize with balloon) ──────────────────────
+
+/**
+ * Commercial mortgage marketing ESTIMATOR.
+ *
+ * Payments are based on a long amortization schedule (e.g. 25 years) but the
+ * remaining balance comes due as a balloon at the (shorter) term. Numbers are
+ * approximations for illustration only.
+ */
+export function commercialMortgage(a: {
+  loanAmount: number;
+  ratePct: number;
+  amortYears: number; // amortization schedule length (e.g. 25)
+  termYears: number; // balloon due at this term (e.g. 7); may be < amortYears
+}): {
+  monthlyPayment: number;
+  balloonBalance: number;
+  totalInterestToTerm: number;
+  totalPaidToTerm: number;
+} {
+  const monthlyPayment = monthlyPI(a.loanAmount, a.ratePct, a.amortYears);
+  const schedule = amortization(a.loanAmount, a.ratePct, a.amortYears);
+  const k = Math.min(a.termYears, a.amortYears) * 12;
+
+  const balloonBalance =
+    k >= schedule.length ? 0 : schedule[k - 1].balance;
+
+  let totalInterestToTerm = 0;
+  for (let i = 0; i < k && i < schedule.length; i++) {
+    totalInterestToTerm += schedule[i].interest;
+  }
+  const totalPaidToTerm = monthlyPayment * k;
+
+  return {
+    monthlyPayment: round(monthlyPayment, 2),
+    balloonBalance: round(balloonBalance, 2),
+    totalInterestToTerm: round(totalInterestToTerm, 2),
+    totalPaidToTerm: round(totalPaidToTerm, 2),
+  };
+}
+
+// ─── Task F: FHA mortgage payment (with MIP) ──────────────────────────────────
+
+/**
+ * FHA mortgage payment marketing ESTIMATOR.
+ *
+ * Approximation only. Uses a flat 1.75% upfront MIP (financed) and a flat 0.55%
+ * annual MIP. Real FHA MIP rates vary by loan term, LTV, and base loan amount,
+ * and MIP duration depends on the down payment. Do not rely on this for an exact
+ * payment quote.
+ */
+export function fhaMortgage(a: {
+  homePrice: number;
+  downPaymentPct?: number; // default & floor 3.5
+  ratePct: number;
+  years: number;
+  annualTaxPct?: number; // default 1.1 (% of home price)
+  annualInsurance?: number; // default 1200 ($/yr)
+}): {
+  baseLoan: number;
+  upfrontMip: number;
+  financedLoan: number;
+  monthlyPI: number;
+  monthlyMip: number;
+  monthlyTax: number;
+  monthlyInsurance: number;
+  totalMonthly: number;
+} {
+  const dp = Math.max(3.5, a.downPaymentPct ?? 3.5);
+  const baseLoan = round(a.homePrice * (1 - dp / 100), 2);
+  const upfrontMip = round(baseLoan * 0.0175, 2); // 1.75% UFMIP, financed
+  const financedLoan = baseLoan + upfrontMip;
+  const monthlyPandI = monthlyPI(financedLoan, a.ratePct, a.years);
+  const monthlyMip = round((financedLoan * 0.0055) / 12, 2); // 0.55% annual MIP (approx)
+  const monthlyTax = ((a.annualTaxPct ?? 1.1) / 100) * a.homePrice / 12;
+  const monthlyInsurance = (a.annualInsurance ?? 1200) / 12;
+  const totalMonthly = round(
+    monthlyPandI + monthlyMip + monthlyTax + monthlyInsurance,
+    2
+  );
+
+  return {
+    baseLoan,
+    upfrontMip,
+    financedLoan: round(financedLoan, 2),
+    monthlyPI: round(monthlyPandI, 2),
+    monthlyMip,
+    monthlyTax: round(monthlyTax, 2),
+    monthlyInsurance: round(monthlyInsurance, 2),
+    totalMonthly,
+  };
+}

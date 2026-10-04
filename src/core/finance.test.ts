@@ -9,6 +9,9 @@ import {
   dti,
   extraPayment,
   rentVsBuy,
+  reverseMortgage,
+  commercialMortgage,
+  fhaMortgage,
 } from "./finance";
 
 // ─── TASK A: Monthly payment & amortization ───────────────────────────────────
@@ -323,5 +326,115 @@ describe("rentVsBuy", () => {
     const lowInflation = rentVsBuy({ ...base, rentInflationPct: 1 });
     const highInflation = rentVsBuy({ ...base, rentInflationPct: 5 });
     expect(highInflation.advantage).toBeGreaterThan(lowInflation.advantage);
+  });
+});
+
+// ─── TASK D: Reverse mortgage (HECM-style estimate) ──────────────────────────
+
+describe("reverseMortgage", () => {
+  it("older age yields higher available proceeds (62 vs 80)", () => {
+    const young = reverseMortgage({ age: 62, homeValue: 500000, expectedRatePct: 6 });
+    const old = reverseMortgage({ age: 80, homeValue: 500000, expectedRatePct: 6 });
+    expect(old.availableProceeds).toBeGreaterThan(young.availableProceeds);
+  });
+
+  it("higher expected rate yields lower or equal PLF", () => {
+    const lowRate = reverseMortgage({ age: 70, homeValue: 500000, expectedRatePct: 5 });
+    const highRate = reverseMortgage({ age: 70, homeValue: 500000, expectedRatePct: 8 });
+    expect(highRate.principalLimitFactor).toBeLessThanOrEqual(lowRate.principalLimitFactor);
+  });
+
+  it("caps max claim amount at the lending limit when home value exceeds it", () => {
+    const result = reverseMortgage({
+      age: 70,
+      homeValue: 2000000,
+      expectedRatePct: 6,
+    });
+    expect(result.maxClaimAmount).toBe(1249125);
+  });
+
+  it("normal case: proceeds positive and less than home value", () => {
+    const result = reverseMortgage({ age: 70, homeValue: 500000, expectedRatePct: 6 });
+    expect(result.availableProceeds).toBeGreaterThan(0);
+    expect(result.availableProceeds).toBeLessThan(500000);
+  });
+});
+
+// ─── TASK E: Commercial mortgage (amortize with balloon) ─────────────────────
+
+describe("commercialMortgage", () => {
+  it("monthly payment is positive", () => {
+    const result = commercialMortgage({
+      loanAmount: 1000000,
+      ratePct: 7,
+      amortYears: 25,
+      termYears: 7,
+    });
+    expect(result.monthlyPayment).toBeGreaterThan(0);
+  });
+
+  it("balloon due before full amortization is positive and below loan amount", () => {
+    const result = commercialMortgage({
+      loanAmount: 1000000,
+      ratePct: 7,
+      amortYears: 25,
+      termYears: 7,
+    });
+    expect(result.balloonBalance).toBeGreaterThan(0);
+    expect(result.balloonBalance).toBeLessThan(1000000);
+  });
+
+  it("balloon is ~0 when term equals or exceeds amortization", () => {
+    const result = commercialMortgage({
+      loanAmount: 1000000,
+      ratePct: 7,
+      amortYears: 25,
+      termYears: 25,
+    });
+    expect(result.balloonBalance).toBeCloseTo(0, 2);
+  });
+
+  it("total interest to term is positive", () => {
+    const result = commercialMortgage({
+      loanAmount: 1000000,
+      ratePct: 7,
+      amortYears: 25,
+      termYears: 7,
+    });
+    expect(result.totalInterestToTerm).toBeGreaterThan(0);
+  });
+});
+
+// ─── TASK F: FHA mortgage payment (with MIP) ─────────────────────────────────
+
+describe("fhaMortgage", () => {
+  it("base loan reflects 3.5% down on a $300k home", () => {
+    const result = fhaMortgage({ homePrice: 300000, ratePct: 6, years: 30 });
+    expect(result.baseLoan).toBe(289500);
+  });
+
+  it("upfront MIP is 1.75% of base loan", () => {
+    const result = fhaMortgage({ homePrice: 300000, ratePct: 6, years: 30 });
+    expect(result.upfrontMip).toBe(Math.round(289500 * 0.0175 * 100) / 100);
+  });
+
+  it("monthly MIP is positive", () => {
+    const result = fhaMortgage({ homePrice: 300000, ratePct: 6, years: 30 });
+    expect(result.monthlyMip).toBeGreaterThan(0);
+  });
+
+  it("total monthly exceeds bare P&I", () => {
+    const result = fhaMortgage({ homePrice: 300000, ratePct: 6, years: 30 });
+    expect(result.totalMonthly).toBeGreaterThan(result.monthlyPI);
+  });
+
+  it("down payment below 3.5% is floored at 3.5%", () => {
+    const result = fhaMortgage({
+      homePrice: 300000,
+      ratePct: 6,
+      years: 30,
+      downPaymentPct: 1,
+    });
+    expect(result.baseLoan).toBe(289500);
   });
 });

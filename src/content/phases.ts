@@ -19,7 +19,7 @@ export interface Phase {
   sections: PhaseSection[];
   /** 4-6 concrete action items. */
   checklist: string[];
-  /** Calculator slug from /calculators/<slug>. */
+  /** Calculator slug from /mortgage-calculators/<slug>. */
   recommendedCalculator: string;
   /** Exactly 3 FAQ items. */
   faq: PhaseFaq[];
@@ -54,7 +54,7 @@ export const PHASES: Phase[] = [
       "Run an affordability estimate to set a target price range.",
       "Request pre-qualification from two or three lenders to compare.",
     ],
-    recommendedCalculator: "affordability",
+    recommendedCalculator: "mortgage-affordability-calculator",
     faq: [
       {
         q: "Does pre-qualification hurt my credit score?",
@@ -103,7 +103,7 @@ export const PHASES: Phase[] = [
       "Get your pre-approval letter in writing before you tour homes.",
       "Avoid new debt or job changes that could affect your approval.",
     ],
-    recommendedCalculator: "payment",
+    recommendedCalculator: "mortgage-payment-calculator",
     faq: [
       {
         q: "What's the difference between pre-qualification and pre-approval?",
@@ -148,7 +148,7 @@ export const PHASES: Phase[] = [
       "Schedule a professional inspection before removing contingencies.",
       "Keep your finances stable so your pre-approval stays valid.",
     ],
-    recommendedCalculator: "payment",
+    recommendedCalculator: "mortgage-payment-calculator",
     faq: [
       {
         q: "How many homes should I tour before making an offer?",
@@ -193,7 +193,7 @@ export const PHASES: Phase[] = [
       "Respond quickly to any document requests from your loan officer.",
       "Keep credit, employment, and bank balances stable.",
     ],
-    recommendedCalculator: "closing-costs",
+    recommendedCalculator: "closing-cost-calculator",
     faq: [
       {
         q: "What is a Loan Estimate?",
@@ -238,7 +238,7 @@ export const PHASES: Phase[] = [
       "Review the appraisal and discuss options if it comes in low.",
       "Secure homeowners insurance and provide the binder to your lender.",
     ],
-    recommendedCalculator: "dti",
+    recommendedCalculator: "debt-to-income-calculator",
     faq: [
       {
         q: "How long does underwriting take?",
@@ -283,7 +283,7 @@ export const PHASES: Phase[] = [
       "Confirm homeowners insurance is active as of closing day.",
       "Keep your finances unchanged until the loan funds.",
     ],
-    recommendedCalculator: "closing-costs",
+    recommendedCalculator: "closing-cost-calculator",
     faq: [
       {
         q: "What is a Closing Disclosure?",
@@ -328,7 +328,7 @@ export const PHASES: Phase[] = [
       "Keep homeowners insurance current and revisit coverage yearly.",
       "Watch interest rates in case refinancing becomes worthwhile.",
     ],
-    recommendedCalculator: "extra-payment",
+    recommendedCalculator: "early-mortgage-payoff-calculator",
     faq: [
       {
         q: "Why did my monthly mortgage payment go up?",
@@ -373,7 +373,7 @@ export const PHASES: Phase[] = [
       "Shop multiple lenders and compare APR, not just the rate.",
       "Weigh the lifetime interest cost against the monthly savings.",
     ],
-    recommendedCalculator: "refinance",
+    recommendedCalculator: "mortgage-refinance-calculator",
     faq: [
       {
         q: "How do I know if refinancing is worth it?",
