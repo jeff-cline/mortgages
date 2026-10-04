@@ -4,12 +4,19 @@ import {
   persistLead,
 } from "@/src/lead/submit";
 import { sendLeadNotification } from "@/src/email/notify";
+import { guardForm } from "@/src/lib/form-guard";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
+  const gate = await guardForm(req, "lead", body ?? {}, {
+    names: [body?.firstName, body?.lastName],
+    texts: [body?.sourcePage],
+    email: body?.email, phone: body?.phone,
+  });
+  if (gate.blocked) return gate.response;
   const v = validateLead(body);
   if (!v.ok) return Response.json({ error: v.error }, { status: 400 });
 

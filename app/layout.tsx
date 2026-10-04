@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { JsonLd } from "@/components/seo/JsonLd";
+import RecaptchaProvider from "@/src/lib/RecaptchaProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -69,6 +70,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${inter.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-white text-ink">
+        {/* Attaches a reCAPTCHA token to every guarded form submission.
+            Inert until RECAPTCHA_SITE_KEY/SECRET_KEY are set. */}
+        <RecaptchaProvider />
         <JsonLd data={organizationLd} />
         <JsonLd data={websiteLd} />
         {children}
